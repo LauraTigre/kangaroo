@@ -1,0 +1,15 @@
+title Nanny authentication
+
+App->API: authenticateUser(email, password)
+API->App: token (userId)
+
+App->API: retrieveUser(token)
+API->API: find user
+API->App: user (name, city, email, role = 'nanny')
+App->App: setUser(user)
+App->HomeNanny: render
+
+HomeNanny->API: retrieveParents(token, user.city)
+API->API: check user exists and is nanny
+API->HomeNanny: [parent]
+HomeNanny->HomeNanny: render parents
